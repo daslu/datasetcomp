@@ -2,6 +2,7 @@
   (:require [spork.util.table :as tbl]
             [tech.ml.dataset.csv :as tech]
             [datasetcomp.tablesaw :as tablesaw]
+            [datasetcomp.renjin :as renjin]
             [clj-memory-meter.core :as mm]))
 
 (def the-data (atom nil))
@@ -186,5 +187,18 @@
   0, "DemandName" "10661_Katie_16500FD00_[1...722]", "GhostFilled"
   0, "TotalFilled" 2, "t" 1, "Deployed"
   2, "SRC" "16500FD00", "DemandGroup" "Molly", "Quarter" 1, "NGFilled"
-  1, "RCFilled" 1, "Overlapping" 0} )
+  1, "RCFilled" 1, "Overlapping" 0}
+
+  (timed-build :renjin
+               (renjin/->table events :separator \tab))
+  ;; [:clearing-data-and-gcing]
+  ;; [:evaluating :renjin :as ((renjin/->table events :separator 	))]
+  ;; "Elapsed time: .......... msecs" 
+  ;; [:measuring-memory-usage!]
+  ;; 137.9 MB
+
+  (first @the-data)
+  #_{:DemandGroup :Molly, :GhostFilled 0, :ACFilled 1, :SRC :01285K100, :TotalRequired 1, :DemandName :11436_Coco_01285K100_ [1...760], :TotalFilled 1, :NGFilled 0, :Quarter 1, :RCFilled 0, :t 1, :Vignette :Coco, :OtherFilled 0, :Overlapping 0, :Deployed 1}
+
+ )
 
