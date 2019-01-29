@@ -46,7 +46,7 @@
 (extend-type Vector
   Clojable
   (->clj [this]
-    (vec this)))
+    (vec this))) ;; TODO: Do we prefer seq here for lazyness?
 
 ;; An IntVector can be just a vector of integers,
 ;; but if its "class" attribute says "factor",
