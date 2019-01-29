@@ -1,6 +1,6 @@
 # datasetcomp
 
-A Clojure library designed to ... well, that part is up to you.
+This is a fork of @joinr's [comparison](https://github.com/joinr/datasetcomp) of various ways to load a dataset in Clojure.
 
 ## Usage
 
